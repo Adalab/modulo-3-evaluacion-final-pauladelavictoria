@@ -4,7 +4,7 @@
 const Character = (props) => {
 
 return (
-    <li key={''} className="card">
+    <li  className="card">
       {/* <Link to={`/user/${props.user.id}`}> */}
       <img
         className="card__img"
