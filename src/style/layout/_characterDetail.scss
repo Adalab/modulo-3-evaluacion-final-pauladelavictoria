@@ -1,0 +1,57 @@
+.mainDetail {
+  height: 100vh;
+}
+
+.cardDetail {
+    position: relative;
+    color: rgb(211, 166, 37);
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto 20px auto;
+  width: 40%;
+  background-color: rgb(116, 0, 16);
+  &_link {
+    background-color: white;
+    padding: 50px;
+    padding-left: 40px;
+    text-align: left;
+    font-family: $secfont;
+    font-size: 20px;
+    &-img {
+      width: 80px;
+      margin-left: 40px;
+      transform: rotate(30deg);
+    }
+  }
+  &_maintitle {
+    font-family: $mainfont;
+    padding: 35px;
+    text-align: center;
+  }
+  &_img {
+    margin: 0 auto 20px auto;
+    width: 50%;
+    height: 400px;
+  }
+  &_info {
+      background-color: white;
+    font-family: $secfont;
+    padding-left: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 20px;
+    &-logo{
+       width: 100px;
+       position: absolute;
+       bottom: 25px;
+       right: 50px;
+    }
+  }
+}
+
+.cardDetail_link:hover {
+  color: rgb(211, 166, 37);
+}
+.cardDetail_info:last-child {
+  margin-bottom: 20px;
+}

@@ -1,24 +1,24 @@
 
 const Filters = (props) => {
     return (
-        <form>
-        <label className="form__label" htmlFor="name">
+        <form className='form' onSumbit={(ev)=>ev.preventDefault()}>
+        <label className="form_label" htmlFor="name">
         Buscar personaje por nombre:{" "}
       </label>
 
       <input
-        className="form__input"
+        className="form_input"
         type="text"
         name="name"
         id="name"
         onChange={props.handleFilter}
         value={props.filterName}
       />
-      <label className="label" htmlFor="numberInput"
+      <label className="form_label" htmlFor="numberInput"
           >Escoge entre estas opciones:</label
         >
         <select
-        className="form__input"
+        className="form_input"
           name="house"
           id="house"
           onChange={props.handleFilter}

@@ -43,7 +43,7 @@ const App = () => {
 
   // Character details
   const renderCharacterDetails = (props) => {
-    const routeId = props.match.params.userId;
+    const routeId = props.match.params.charId;
     const foundCharacter = characterData.find(
       (character) => character.name === routeId
     );
@@ -56,10 +56,11 @@ const App = () => {
   };
 
   return (
-    <div>
-      <img className="logoHeader" src={hpIcon} alt="Logo de Harry Potter" />
-      <h1>HARRY POTTER</h1>
-
+    <div className="main">
+      <header className="header">
+      <img className="header_logo" src={hpIcon} alt="Logo de Harry Potter" />
+      <h1 className="header_title">HARRY POTTER</h1> 
+      </header>
       <Switch>
         <Route path="/" exact>
           <Filters
