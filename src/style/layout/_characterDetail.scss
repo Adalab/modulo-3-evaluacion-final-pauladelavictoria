@@ -1,5 +1,7 @@
 .mainDetail {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardDetail {
@@ -34,14 +36,13 @@
     height: 400px;
   }
   &_info {
-      background-color: white;
     font-family: $secfont;
     padding-left: 30px;
     margin-left: 40px;
     margin-right: 40px;
     font-size: 20px;
     &-logo{
-       width: 100px;
+       width: 150px;
        position: absolute;
        bottom: 25px;
        right: 50px;

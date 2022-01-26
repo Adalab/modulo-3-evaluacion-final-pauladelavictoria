@@ -7,31 +7,45 @@ import { useState, useEffect } from "react";
 import Characterdetails from "./Characterdetails";
 import Filters from "./Filters";
 import CharacterList from "./CharacterList";
-// API
+// service
 import CallToApi from "../services/Api";
-// Imágenes
-import hpIcon from "../images/hpIcon.png";
+import localstorage from '../services/localstorage';
+
+
 
 const App = () => {
+   
+     // localstorage
+     const localStorageName = localstorage.get('lsname', '');
+     const localStorageHouse= localstorage.get('lshouse', '');
+     
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState("");
   const [filterSpecies, setFilterSpecies] = useState("");
   const [filterHouse, setFilterHouse] = useState("gryffindor");
+  const [lsName, setLsName] = useState(localStorageName);
+  const [lsHouse, setLsHouse] = useState(localStorageHouse);
 
   // useEffect
   useEffect(() => {
     CallToApi(filterHouse).then((data) => setCharacterData(data));
   }, [filterHouse]);
+  useEffect(() => {
+    localstorage.set('lsname', lsName);
+    localstorage.set('lshouse', lsHouse);
+  }, [lsName, lsHouse]);
 
   // Filtros
   const handleFilter = (ev) => {
     console.log(ev.currentTarget.name);
     if (ev.currentTarget.name === "name") {
       setFilterName(ev.currentTarget.value);
+      setLsName(ev.target.value);
     }
     if (ev.currentTarget.name === "house") {
       setFilterHouse(ev.currentTarget.value.toLowerCase());
+      setLsHouse(ev.target.value);
     }
   };
 
@@ -39,6 +53,9 @@ const App = () => {
     return filterCharName.name.toLowerCase().includes(filterName.toLowerCase())
   });
 
+  const renderFilters = () => {
+    
+  }
   
 
   // Character details
@@ -47,6 +64,8 @@ const App = () => {
     const foundCharacter = characterData.find(
       (character) => character.name === routeId
     );
+
+
     return (
       <Characterdetails
         character={foundCharacter}
@@ -58,7 +77,6 @@ const App = () => {
   return (
     <div className="main">
       <header className="header">
-      <img className="header_logo" src={hpIcon} alt="Logo de Harry Potter" />
       <h1 className="header_title">HARRY POTTER</h1> 
       </header>
       <Switch>
@@ -67,6 +85,7 @@ const App = () => {
             handleFilter={handleFilter}
             filterHouse={filterHouse}
             filterName={filterName}
+            
           />
           <CharacterList
             characterData={characterData}

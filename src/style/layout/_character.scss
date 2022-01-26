@@ -1,5 +1,5 @@
 .card {
-  margin: 10%;
+  margin: 20px;
 
   &_img {
     width: 100%;
@@ -9,15 +9,25 @@
     background-color: rgb(116, 0, 16);
     font-family: "Crimson Text", Georgia;
     padding: 20px;
-    color: rgb(211,166,37);
+    color: rgb(211, 166, 37);
+    position: relative;
   }
-
 }
 
-.link{
-    color: rgb(174, 0, 1);
-    :hover {
-        color: rgb(87, 10, 10);
-      }
+.link {
+  color:white;
+  margin: 20px;
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
 }
 
+.link:hover {
+  color: rgb(211, 166, 37);
+}
+.card_img-logo{
+  width: 50px;
+  position: absolute;
+  right: 55px;
+  bottom: 50px;
+}

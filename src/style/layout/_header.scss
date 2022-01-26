@@ -1,25 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-
-.header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 40px;
-   
-    &_logo{
-        width: 150px;
-        height: 150px;
-    }
-    &_title{
-font-family: $mainfont;
-font-size: 50px;
-color: rgb(162, 140, 15);
-    }
+  &_title {
+    margin-top: 80px;
+    font-family: $mainfont;
+    font-size: 70px;
+    color: rgb(162, 140, 15);
+  }
 }
 
-.main{
-    height: 100vh;
+.main {
+  height: 100vh;
 }
-
-
-

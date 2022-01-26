@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import wand from '../images/wand.png';
-import gryffindor from '../images/gry.jpg';
+import gry from '../images/gry.png';
+import sly from '../images/sly.png';
+import huf from '../images/huf.png';
+import rav from '../images/rav.png';
 
 const Characterdetails = (props) => {
    
@@ -27,7 +30,10 @@ const Characterdetails = (props) => {
       <li className="cardDetail_info">Casa: {props.character.house}</li>
       <li className="cardDetail_info">Género: {props.character.gender}</li>
       </ul>
-      <img className="cardDetail_info-logo" src={gryffindor} alt="varita de Harry Potter" />
+
+      <img className="cardDetail_info-logo" src={props.character.house=== 'Gryffindor' ? gry : props.character.house=== 'Slytherin' ? sly : props.character.house === 'Hufflepuff' ? huf : props.character.house=== 'Ravenclaw' ? rav : ""}
+      alt="Escudo de gryffindor" />
+
       </div>
       <Link className="cardDetail_link"to="/">Volver al incio <img
         className="cardDetail_link-img"

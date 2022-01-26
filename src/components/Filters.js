@@ -1,7 +1,15 @@
-
+import hpIcon from "../images/hpIcon.png";
+import arrow from "../images/arrow.png";
 const Filters = (props) => {
     return (
-        <form className='form' onSumbit={(ev)=>ev.preventDefault()}>
+    
+<div>
+  <div onClick={props.renderFilters}>
+<img className="filter_logo" src={hpIcon} alt="Logo de Harry Potter" />
+<img className="filter_arrow" src={arrow} alt="Icono flecha" />
+<p className="filter_text">Pincha aquí para filtrar la búsqueda</p>
+</div>
+        <form className='form collapse' onSumbit={(ev)=>ev.preventDefault()}>
         <label className="form_label" htmlFor="name">
         Buscar personaje por nombre:{" "}
       </label>
@@ -30,6 +38,7 @@ const Filters = (props) => {
           <option >Hufflepuff</option>
         </select>
         </form>
+        </div>
     );
   };
   
