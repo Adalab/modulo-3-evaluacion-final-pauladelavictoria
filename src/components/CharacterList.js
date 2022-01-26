@@ -5,7 +5,20 @@ const CharacterList = (props) => {
     return <Character character={character} key={index} />;
   });
 
-  return <ul className="characterCards">{characterData}</ul>;
+
+  const renderCharacterList = () => {
+    if (characterData.length >= 1) {
+     return characterData
+    } else {
+      return "No existe el personaje que buscas"
+    }
+  }
+
+  return (
+    <ul className="characterCards">
+      {renderCharacterList()}
+    </ul>
+  );
 };
 
 export default CharacterList;
