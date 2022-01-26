@@ -32,8 +32,9 @@
   }
   &_img {
     margin: 0 auto 20px auto;
-    width: 50%;
+    width: 70%;
     height: 400px;
+    object-fit: cover;
   }
   &_info {
     font-family: $secfont;
@@ -42,10 +43,10 @@
     margin-right: 40px;
     font-size: 20px;
     &-logo{
-       width: 150px;
+       width: 200px;
        position: absolute;
        bottom: 25px;
-       right: 50px;
+       right: 35px;
     }
   }
 }

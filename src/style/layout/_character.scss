@@ -3,31 +3,32 @@
 
   &_img {
     width: 100%;
-    height: 70%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
   }
   &_data {
     background-color: rgb(116, 0, 16);
+    font-size: 20px;
     font-family: "Crimson Text", Georgia;
     padding: 20px;
     color: rgb(211, 166, 37);
     position: relative;
   }
+
 }
 
-.link {
-  color:white;
-  margin: 20px;
-  position: absolute;
-  bottom: 3px;
-  right: 10px;
-}
+.Ravenclaw .card_data {
+  background-color: rgb(37, 98, 204);
+  color: rgb(98, 233, 243);
+} 
 
-.link:hover {
-  color: rgb(211, 166, 37);
-}
-.card_img-logo{
+
+.card-logo{
   width: 50px;
   position: absolute;
   right: 55px;
-  bottom: 50px;
+  bottom: 40px;
+  cursor: pointer;
 }
+

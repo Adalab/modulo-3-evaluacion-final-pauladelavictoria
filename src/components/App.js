@@ -1,7 +1,7 @@
 // Estilos
 import "../style/App.scss";
 // Hooks
-import { Link, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
 // Componentes
 import Characterdetails from "./Characterdetails";
@@ -17,35 +17,32 @@ const App = () => {
    
      // localstorage
      const localStorageName = localstorage.get('lsname', '');
-     const localStorageHouse= localstorage.get('lshouse', '');
+     const localStorageHouse= localstorage.get('lshouse', 'Gryffindor');
      
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
-  const [filterName, setFilterName] = useState("");
   const [filterSpecies, setFilterSpecies] = useState("");
-  const [filterHouse, setFilterHouse] = useState("gryffindor");
-  const [lsName, setLsName] = useState(localStorageName);
-  const [lsHouse, setLsHouse] = useState(localStorageHouse);
+  const [filterName, setFilterName] = useState(localStorageName);
+  const [filterHouse, setFilterHouse] = useState(localStorageHouse);
 
+
+  
   // useEffect
   useEffect(() => {
+    console.log(filterHouse);
     CallToApi(filterHouse).then((data) => setCharacterData(data));
   }, [filterHouse]);
-  useEffect(() => {
-    localstorage.set('lsname', lsName);
-    localstorage.set('lshouse', lsHouse);
-  }, [lsName, lsHouse]);
-
-  // Filtros
-  const handleFilter = (ev) => {
-    console.log(ev.currentTarget.name);
-    if (ev.currentTarget.name === "name") {
-      setFilterName(ev.currentTarget.value);
-      setLsName(ev.target.value);
-    }
-    if (ev.currentTarget.name === "house") {
-      setFilterHouse(ev.currentTarget.value.toLowerCase());
-      setLsHouse(ev.target.value);
+  
+    
+    // Filtros
+    const handleFilter = (name, value) => {
+      if (name === "name") {
+        setFilterName(value);
+        localstorage.set('lsname', value);
+      }
+      if (name === "house") {
+      localstorage.set('lshouse', value);
+      setFilterHouse(value);
     }
   };
 
@@ -53,19 +50,17 @@ const App = () => {
     return filterCharName.name.toLowerCase().includes(filterName.toLowerCase())
   });
 
-  const renderFilters = () => {
-    
-  }
+ 
   
 
   // Character details
   const renderCharacterDetails = (props) => {
+    console.log(props.match.params);
     const routeId = props.match.params.charId;
     const foundCharacter = characterData.find(
       (character) => character.name === routeId
     );
-
-
+      console.log(foundCharacter);
     return (
       <Characterdetails
         character={foundCharacter}
@@ -75,7 +70,7 @@ const App = () => {
   };
 
   return (
-    <div className="main">
+    <div className={`main ${filterHouse}`}>
       <header className="header">
       <h1 className="header_title">HARRY POTTER</h1> 
       </header>
@@ -85,7 +80,6 @@ const App = () => {
             handleFilter={handleFilter}
             filterHouse={filterHouse}
             filterName={filterName}
-            
           />
           <CharacterList
             characterData={characterData}

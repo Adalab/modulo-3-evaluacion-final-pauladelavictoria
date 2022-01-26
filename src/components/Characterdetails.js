@@ -6,6 +6,13 @@ import huf from '../images/huf.png';
 import rav from '../images/rav.png';
 
 const Characterdetails = (props) => {
+
+  const getCrestSrc = (house) => {
+    if (house === 'Gryffindor') return gry
+    else if (house === 'Slytherin') return sly
+    else if (house === 'Hufflepuff') return huf
+    else if (house === 'Ravenclaw') return rav
+  }
    
   return (
     <section className='mainDetail'>
@@ -31,7 +38,7 @@ const Characterdetails = (props) => {
       <li className="cardDetail_info">Género: {props.character.gender}</li>
       </ul>
 
-      <img className="cardDetail_info-logo" src={props.character.house=== 'Gryffindor' ? gry : props.character.house=== 'Slytherin' ? sly : props.character.house === 'Hufflepuff' ? huf : props.character.house=== 'Ravenclaw' ? rav : ""}
+      <img className="cardDetail_info-logo" src={getCrestSrc(props.character.house)}
       alt="Escudo de gryffindor" />
 
       </div>
