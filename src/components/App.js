@@ -24,14 +24,11 @@ const App = () => {
   
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
-  const [filterSpecies, setFilterSpecies] = useState("");
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
-  console.log(filterHouse);
 
   // useEffect
   useEffect(() => {
-    console.log(filterHouse);
     CallToApi(filterHouse).then((data) => setCharacterData(data));
   }, [filterHouse]);
 
@@ -81,7 +78,7 @@ const App = () => {
         className="header"
         style={{ backgroundImage: `url(${getHouseBackground(filterHouse)})` }}
       >
-        <h1 className="header_title">HARRY POTTER</h1>
+        <h1 className="header_title">Harry Potter</h1>
       </header>
       <Switch>
         <Route path="/" exact>

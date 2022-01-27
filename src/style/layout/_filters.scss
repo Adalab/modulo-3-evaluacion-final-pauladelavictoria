@@ -17,7 +17,7 @@
 }
 .flexFilters {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 .filter_resetbtn{
@@ -39,6 +39,9 @@
 .filter_text{
     font-family: $secfont;
     font-size: 17px;
-    margin-left: 10px;
     margin-bottom: 25px;
+}
+
+.filter_housesimg {
+    width: 200px;
 }

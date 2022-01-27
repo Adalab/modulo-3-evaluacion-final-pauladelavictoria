@@ -2,6 +2,7 @@ import { useState } from "react";
 import hpIcon from "../images/hpIcon.png";
 import arrow2 from "../images/arrow.png";
 import reset from '../images/reset.png';
+import filtersimg from '../images/filtersimg.png';
 
 
 // Filtros
@@ -29,6 +30,7 @@ const handleReset = () => {
           <img className="filter_arrow" src={arrow2} alt="Icono flecha" />
           <p className="filter_text">Pincha aquí para {showFilters ? 'ocultar' : 'filtrar'} la búsqueda</p> 
         </div>
+        <img className="filter_housesimg" src={filtersimg} alt="Logo de casas de Harry Potter" />
         <div className="filter_reset">
           <button type='reset' onClick={handleReset}><img className="filter_resetbtn" src={reset} alt="Icono andén" /></button>
           <p className="filter_text">Borra tus búsquedas</p>
