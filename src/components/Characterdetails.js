@@ -4,6 +4,7 @@ import gry from '../images/gry.png';
 import sly from '../images/sly.png';
 import huf from '../images/huf.png';
 import rav from '../images/rav.png';
+import imgplace from '../images/imgplace.png';
 
 const Characterdetails = (props) => {
 
@@ -21,11 +22,8 @@ const Characterdetails = (props) => {
       <h2 className="cardDetail_maintitle">{`Información sobre: ${props.character.name}`}</h2>
       <img
         className="cardDetail_img"
-        src={
-          props.character.image
-            ? props.character.image
-            : `https://via.placeholder.com/210x290/ffffff/666666/?text=${props.character.name}`
-        }
+
+        src={props.character.image ? props.character.image : imgplace}
         alt={`Foto de ${props.character.name}`}
         title={`Foto de ${props.character.name}`}
       />

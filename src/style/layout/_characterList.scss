@@ -1,5 +1,28 @@
-.characterCards{
-    display: grid;
+.characterCards {
+  display: grid;
+    grid-template-columns: 100%;
+    background-color: rgb(116, 0, 16);
+    @media (min-width: 450px) {
+      grid-template-columns: 50% 50%;
+    }
+    @media (min-width: 800px) {
+      grid-template-columns: 33% 33% 33%;
+     
+    }
+  @media (min-width:  1100px) {
     grid-template-columns: 25% 25% 25% 25%;
-    
+   
+  }
+}
+
+.Ravenclaw .characterCards {
+  background-color: rgb(0, 79, 111);
+}
+
+.Slytherin .characterCards {
+  background-color: rgb(0, 56, 31);
+}
+
+.Hufflepuff .characterCards {
+  background-color: rgb(236, 185, 56);
 }

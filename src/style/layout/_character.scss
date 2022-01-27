@@ -1,3 +1,4 @@
+
 .card {
   margin: 20px;
 
@@ -8,7 +9,6 @@
     object-position: top;
   }
   &_data {
-    background-color: rgb(116, 0, 16);
     font-size: 20px;
     font-family: "Crimson Text", Georgia;
     padding: 20px;
@@ -18,16 +18,17 @@
 
 }
 
-.Ravenclaw .card_data {
-  background-color: rgb(37, 98, 204);
-  color: rgb(98, 233, 243);
+
+.Hufflepuff .card_data{
+  background-color: rgb(236, 185, 56);
+  color: rgb(55, 46, 41);
 } 
 
 
 .card-logo{
   width: 50px;
   position: absolute;
-  right: 55px;
+  right: 35px;
   bottom: 40px;
   cursor: pointer;
 }

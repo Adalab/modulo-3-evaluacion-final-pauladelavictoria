@@ -12,13 +12,13 @@ const Character = (props) => {
         title={`Foto de ${props.character.name}`}
       />
       <div className="card_data">
+  
+        <Link className="link" to={`/characterdetails/${props.character.name}`}>
         <h3 className="card_data-title">{props.character.name}</h3>
         <p className="card_data-info">{props.character.species}</p>
         <p className="card_data-info">
           {props.character.alive ? "Vive" : "Ya no vive"}
         </p>
-
-        <Link className="link" to={`/characterdetails/${props.character.name}`}>
           <img
             className="card-logo"
             src={envelope}

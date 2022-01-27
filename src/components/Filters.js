@@ -1,7 +1,10 @@
 import { useState } from "react";
 import hpIcon from "../images/hpIcon.png";
-import arrow from "../images/arrow.png";
+import arrow2 from "../images/arrow.png";
+import reset from '../images/reset.png';
 
+
+// Filtros
 const Filters = (props) => {
   const [showFilters, setShowFilters] = useState(false);
 
@@ -12,15 +15,24 @@ const Filters = (props) => {
     props.handleFilter(ev.currentTarget.name, ev.currentTarget.value);
   };
 
+  // Reset
+const handleReset = () => {
+  props.handleFilter('name', '');
+  props.handleFilter('house', 'Gryffindor');
+}
+
   return (
     <div>
-      <div onClick={renderFilters}>
-        <img className="filter_logo" src={hpIcon} alt="Logo de Harry Potter" />
-
-       
-            <img className="filter_arrow" src={arrow} alt="Icono flecha" />
-            <p className="filter_text">Pincha aquí para {showFilters ? 'ocultar' : 'filtrar'} la búsqueda</p>
-          
+      <div className="flexFilters">
+        <div onClick={renderFilters}>
+          <img className="filter_logo" src={hpIcon} alt="Logo de Harry Potter" />
+          <img className="filter_arrow" src={arrow2} alt="Icono flecha" />
+          <p className="filter_text">Pincha aquí para {showFilters ? 'ocultar' : 'filtrar'} la búsqueda</p> 
+        </div>
+        <div className="filter_reset">
+          <button type='reset' onClick={handleReset}><img className="filter_resetbtn" src={reset} alt="Icono andén" /></button>
+          <p className="filter_text">Borra tus búsquedas</p>
+        </div>
       </div>
 
       {showFilters && (

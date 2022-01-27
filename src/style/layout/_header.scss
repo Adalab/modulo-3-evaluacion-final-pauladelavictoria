@@ -1,16 +1,22 @@
+
+
 .header {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-size: cover;
+
 
   &_title {
-    margin-top: 80px;
+    margin-top: 40px;
     font-family: $mainfont;
+    font-size: 40px;
+    color: white;
+    @media (min-width: 768px) {
+    margin-top: 80px;
+    margin-bottom: 30px;
     font-size: 70px;
-    color: rgb(211, 166, 37);
+   
   }
 }
-
-.body {
-  background-color: rgb(116, 0, 16);
 }
