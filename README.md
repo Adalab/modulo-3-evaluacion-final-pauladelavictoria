@@ -6,6 +6,7 @@ Este proyecto es un  **buscador de personajes de la saga de Harry Potter**.
 
 1.  Al comenzar encontrarás a todos los personajes de Gryffindor🦁. 
 2. **Si quieres cambiar de casa**, pulsa en el icono de la izquierda y aparecerán los filtros.
+3. 
    > **NOTA:** con cada casa se transforman los colores de la web 🪄 
 3. Si quieres saber más sobre un personaje concreto, **pulsa en la carta de entrada a Howards** ✉️
 4. **RESET:** Barre todas tus búsqueda pulsando en la Nimbus 🧹
