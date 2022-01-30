@@ -17,15 +17,23 @@ import fondorav from "../images/fondorav.jpg";
 import fondohuff from "../images/fondohuff.jpg";
 
 const App = () => {
+
+  const defaultSpecies = {
+    human: true,
+    werewolf: true,
+    halfGiant: true,
+    ghost: true,
+  }
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-  console.log(localStorageHouse);
-  
+  const localStorageSpecies = JSON.parse(localstorage.get("lsspecies"))
+
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
+  const [speciesFilter, setSpeciesFilter] = useState(localStorageSpecies || defaultSpecies);
 
   // useEffect
   useEffect(() => {
@@ -42,20 +50,53 @@ const App = () => {
       setFilterHouse(value);
       localstorage.set("lshouse", value);
     }
+    if (
+      name === "human" ||
+      name === "werewolf" ||
+      name === "halfGiant" ||
+      name === "ghost"
+    ) {
+      setSpeciesFilter({ ...speciesFilter, [name]: value });
+      localstorage.set(
+        "lsspecies",
+        JSON.stringify({ ...speciesFilter, [name]: value })
+      );
+    }
+  };
+  const handleSpeciesReset = () => {
+    setSpeciesFilter(defaultSpecies);
+    localstorage.set(
+      "lsspecies",
+      JSON.stringify(defaultSpecies)
+    );
   };
 
-  const filteredCharacters = characterData.filter((filterCharName) => {
-    return filterCharName.name.toLowerCase().includes(filterName.toLowerCase());
-  });
+  // console.log(speciesFilter.human, speciesFilter['human']);
+
+  const filteredCharacters = characterData
+    .filter((filterChar) => {
+      return filterChar.name.toLowerCase().includes(filterName.toLowerCase());
+    })
+    .filter((filterChar) => {
+      if (filterChar.species === "human") {
+        return speciesFilter.human;
+      } else if (filterChar.species === "werewolf") {
+        return speciesFilter.werewolf;
+      } else if (filterChar.species === "halfGiant") {
+        return speciesFilter.halfGiant;
+      } else if (filterChar.species === "ghost") {
+        return speciesFilter.ghost;
+      }
+      return false;
+      // return speciesFilter[filterChar.species]
+    });
 
   // Character details
   const renderCharacterDetails = (props) => {
-    console.log(props.match.params);
     const routeId = props.match.params.charId;
     const foundCharacter = characterData.find(
       (character) => character.name === routeId
     );
-    console.log(foundCharacter);
     return (
       <Characterdetails
         character={foundCharacter}
@@ -84,8 +125,10 @@ const App = () => {
         <Route path="/" exact>
           <Filters
             handleFilter={handleFilter}
+            handleSpeciesReset={handleSpeciesReset}
             filterHouse={filterHouse}
             filterName={filterName}
+            speciesFilter={speciesFilter}
           />
           <CharacterList
             characterData={characterData}
