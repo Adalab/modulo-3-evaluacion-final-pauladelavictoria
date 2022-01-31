@@ -51,6 +51,19 @@ const handleReset = () => {
             onChange={handleFilter}
             value={props.filterName}
           />
+          <label className="form_label" htmlFor="actor">
+            Buscar personaje por el nombre del actor:
+          </label>
+
+          <input
+            className="form_input"
+            type="text"
+            name="actor"
+            id="actor"
+            onChange={handleFilter}
+            value={props.filterActor}
+          />
+
           <label className="form_label" htmlFor="numberInput">
             Escoge entre estas opciones:
           </label>

@@ -20,12 +20,14 @@ const App = () => {
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-  console.log(localStorageHouse);
+  const localStorageActor = localstorage.get("lsactor", "");
+  
   
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
+  const [filterActor, setFilterActor] = useState(localStorageActor);
 
   // useEffect
   useEffect(() => {
@@ -38,15 +40,21 @@ const App = () => {
       setFilterName(value);
       localstorage.set("lsname", value);
     }
-    if (name === "house") {
+    else if (name === "house") {
       setFilterHouse(value);
       localstorage.set("lshouse", value);
     }
+else if (name === "actor") {
+  setFilterActor(value);
+  localstorage.set("lsactor", value);
+}
   };
 
   const filteredCharacters = characterData.filter((filterCharName) => {
     return filterCharName.name.toLowerCase().includes(filterName.toLowerCase());
-  });
+  }).filter((character) => {
+    return character.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
+  } ) ;
 
   // Character details
   const renderCharacterDetails = (props) => {
@@ -86,6 +94,7 @@ const App = () => {
             handleFilter={handleFilter}
             filterHouse={filterHouse}
             filterName={filterName}
+            filterActor={filterActor}
           />
           <CharacterList
             characterData={characterData}
