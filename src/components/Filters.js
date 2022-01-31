@@ -7,7 +7,6 @@ import filtersimg from "../images/filtersimg.png";
 // Filtros
 const Filters = (props) => {
   const [showFilters, setShowFilters] = useState(false);
-  
 
   const renderFilters = () => {
     setShowFilters(!showFilters);
@@ -16,9 +15,9 @@ const Filters = (props) => {
     props.handleFilter(ev.currentTarget.name, ev.currentTarget.value);
   };
 
-  const handleSpeciesFilter =(ev) => {
+  const handleSpeciesFilter = (ev) => {
     props.handleFilter(ev.currentTarget.id, ev.currentTarget.checked);
-  }
+  };
 
   // Reset
   const handleReset = () => {
@@ -85,23 +84,87 @@ const Filters = (props) => {
             <option id="hufflepuff">Hufflepuff</option>
           </select>
           <div>
+
+       <label className="form_label">Elige los personajes según su sexo:</label>
+<div>
+  <label htmlFor="female">
+    <input
+      id="female"
+      type="radio"
+      checked={props.characterData.gender === 'female'}
+      defaultValue="female"
+      name="gender"
+      onChange={handleSpeciesFilter}
+    />
+    Mujer
+  </label>
+</div>
+<div>
+  <label htmlFor="male">
+    <input
+      id="male"
+      type="radio"
+      checked={props.characterData.gender === 'male'}
+      defaultValue="male"
+      name="gender"
+      onChange={handleSpeciesFilter}
+    />
+    Hombre
+  </label>
+</div>
+{/* <div>
+  <label htmlFor="all">
+    <input
+      id="all"
+      type="radio"
+      value="all"
+      name="gender"
+    />
+   Todas las personas
+  </label>
+</div> */}
+       
             <label className="form_label">
               Filtra los personajes según su especie:
             </label>
             <label htmlFor="human">
-              <input id="human" type="checkbox" name="species" checked={props.speciesFilter.human}  onChange={handleSpeciesFilter}/>
+              <input
+                id="human"
+                type="checkbox"
+                name="species"
+                checked={props.speciesFilter.human}
+                onChange={handleSpeciesFilter}
+              />
               Humana
             </label>
             <label htmlFor="ghost">
-              <input id="ghost" type="checkbox" name="species" checked={props.speciesFilter.ghost} onChange={handleSpeciesFilter}/>
+              <input
+                id="ghost"
+                type="checkbox"
+                name="species"
+                checked={props.speciesFilter.ghost}
+                onChange={handleSpeciesFilter}
+              />
               Fantasma
             </label>
             <label htmlFor="halfGiant">
-              <input id="halfGiant" type="checkbox" name="species" checked={props.speciesFilter.halfGiant} onChange={handleSpeciesFilter}/>
+              <input
+                id="halfGiant"
+                type="checkbox"
+                name="species"
+                checked={props.speciesFilter.halfGiant}
+                onChange={handleSpeciesFilter}
+              />
               Mitad gigante
             </label>
             <label htmlFor="werewolf">
-              <input id="werewolf" type="checkbox" name="species" checked={props.speciesFilter.werewolf} onChange={handleSpeciesFilter}/>
+              <input
+                id="werewolf"
+                type="checkbox"
+                name="species"
+                checked={props.speciesFilter.werewolf}
+                onChange={handleSpeciesFilter}
+              />
               Hombre lobo
             </label>
             {/* {['human', 'ghost', 'halfGiant', 'werewolf'].map((eachSpecies) => 

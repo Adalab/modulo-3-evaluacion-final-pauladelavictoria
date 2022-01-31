@@ -17,24 +17,28 @@ import fondorav from "../images/fondorav.jpg";
 import fondohuff from "../images/fondohuff.jpg";
 
 const App = () => {
-
   const defaultSpecies = {
     human: true,
     werewolf: true,
     halfGiant: true,
     ghost: true,
-  }
+  };
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-  const localStorageSpecies = JSON.parse(localstorage.get("lsspecies"))
+  const localStorageSpecies = JSON.parse(localstorage.get("lsspecies"));
+  const localStorageGender = localstorage.get("lsgender", "");
+  console.log(localStorageGender);
 
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
-  const [speciesFilter, setSpeciesFilter] = useState(localStorageSpecies || defaultSpecies);
-
+  const [speciesFilter, setSpeciesFilter] = useState(
+    localStorageSpecies || defaultSpecies
+  );
+  const [filterGender, setFilterGender] = useState(localStorageGender);
+console.log(filterGender);
   // useEffect
   useEffect(() => {
     CallToApi(filterHouse).then((data) => setCharacterData(data));
@@ -61,14 +65,16 @@ const App = () => {
         "lsspecies",
         JSON.stringify({ ...speciesFilter, [name]: value })
       );
+      if (name === "gender") {
+        setSpeciesFilter(value);
+        localstorage.set("lsgender", value);
+      }
     }
   };
+
   const handleSpeciesReset = () => {
     setSpeciesFilter(defaultSpecies);
-    localstorage.set(
-      "lsspecies",
-      JSON.stringify(defaultSpecies)
-    );
+    localstorage.set("lsspecies", JSON.stringify(defaultSpecies));
   };
 
   // console.log(speciesFilter.human, speciesFilter['human']);
@@ -126,8 +132,10 @@ const App = () => {
           <Filters
             handleFilter={handleFilter}
             handleSpeciesReset={handleSpeciesReset}
+            characterData={characterData}
             filterHouse={filterHouse}
             filterName={filterName}
+            filterGender={filterGender}
             speciesFilter={speciesFilter}
           />
           <CharacterList
