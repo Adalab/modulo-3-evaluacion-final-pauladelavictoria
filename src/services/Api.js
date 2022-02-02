@@ -11,7 +11,8 @@ const CallToApi = (filterHouse) => {
           patronus: dataCharacter.patronus,
           alive: dataCharacter.alive,
           image: dataCharacter.image,
-          gender: dataCharacter.gender
+          gender: dataCharacter.gender,
+          actor: dataCharacter.actor
         };
       });
     });

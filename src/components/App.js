@@ -26,19 +26,23 @@ const App = () => {
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
+
   const localStorageSpecies = localstorage.get("lsspecies", defaultSpecies);
   const localStorageGender = localstorage.get("lsgender", "all");
-  console.log(localStorageGender);
+  const localStorageActor = localstorage.get("lsactor", "");
 
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
+
   const [speciesFilter, setSpeciesFilter] = useState(
     localStorageSpecies
   );
   const [filterGender, setFilterGender] = useState(localStorageGender);
-console.log(filterGender);
+
+  const [filterActor, setFilterActor] = useState(localStorageActor);
+
   // useEffect
   useEffect(() => {
     CallToApi(filterHouse).then((data) => setCharacterData(data));
@@ -50,11 +54,12 @@ console.log(filterGender);
       setFilterName(value);
       localstorage.set("lsname", value);
     }
-    if (name === "house") {
+    else if (name === "house") {
       setFilterHouse(value);
       localstorage.set("lshouse", value);
     }
-    if (
+
+    else if (
       name === "human" ||
       name === "werewolf" ||
       name === "halfGiant" ||
@@ -66,9 +71,13 @@ console.log(filterGender);
         JSON.stringify({ ...speciesFilter, [name]: value })
       );
     }
-    if (name === "gender") {
+    else if (name === "gender") {
       setFilterGender(value);
       localstorage.set("lsgender", value);
+    } 
+    else if (name === "actor") {
+      setFilterActor(value);
+      localstorage.set("lsactor", value);
     }
   };
 
@@ -96,11 +105,15 @@ console.log(filterGender);
       return false;
       // return speciesFilter[filterChar.species]
     })
+    .filter((character) => {
+      return character.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
+    } )
     .filter((filterChar) => {
       if (filterGender === 'female') return filterChar.gender === 'female'
       else if (filterGender === 'male') return filterChar.gender === 'male'
       return true
     });
+
 
   // Character details
   const renderCharacterDetails = (props) => {
@@ -142,6 +155,7 @@ console.log(filterGender);
             filterName={filterName}
             filterGender={filterGender}
             speciesFilter={speciesFilter}
+            filterActor={filterActor}
           />
           <CharacterList
             characterData={characterData}
