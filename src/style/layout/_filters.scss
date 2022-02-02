@@ -42,6 +42,17 @@
     margin-bottom: 25px;
 }
 
-.filter_housesimg {
-    width: 200px;
+.filter_houses {
+    display: flex;
+}
+
+.filter_houses img {
+    width: 50px;
+    filter: saturate(0);
+    cursor: pointer;
+}
+
+.filter_houses img.selected, 
+.filter_houses img:hover {
+    filter: none;
 }

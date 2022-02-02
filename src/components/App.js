@@ -26,8 +26,8 @@ const App = () => {
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-  const localStorageSpecies = JSON.parse(localstorage.get("lsspecies"));
-  const localStorageGender = localstorage.get("lsgender", "");
+  const localStorageSpecies = localstorage.get("lsspecies", defaultSpecies);
+  const localStorageGender = localstorage.get("lsgender", "all");
   console.log(localStorageGender);
 
   // Variables estado
@@ -35,7 +35,7 @@ const App = () => {
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
   const [speciesFilter, setSpeciesFilter] = useState(
-    localStorageSpecies || defaultSpecies
+    localStorageSpecies
   );
   const [filterGender, setFilterGender] = useState(localStorageGender);
 console.log(filterGender);
@@ -65,10 +65,10 @@ console.log(filterGender);
         "lsspecies",
         JSON.stringify({ ...speciesFilter, [name]: value })
       );
-      if (name === "gender") {
-        setSpeciesFilter(value);
-        localstorage.set("lsgender", value);
-      }
+    }
+    if (name === "gender") {
+      setFilterGender(value);
+      localstorage.set("lsgender", value);
     }
   };
 
@@ -95,6 +95,11 @@ console.log(filterGender);
       }
       return false;
       // return speciesFilter[filterChar.species]
+    })
+    .filter((filterChar) => {
+      if (filterGender === 'female') return filterChar.gender === 'female'
+      else if (filterGender === 'male') return filterChar.gender === 'male'
+      return true
     });
 
   // Character details
