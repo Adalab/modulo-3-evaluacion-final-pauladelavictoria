@@ -17,16 +17,30 @@ import fondorav from "../images/fondorav.jpg";
 import fondohuff from "../images/fondohuff.jpg";
 
 const App = () => {
+  const defaultSpecies = {
+    human: true,
+    werewolf: true,
+    halfGiant: true,
+    ghost: true,
+  };
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
+
+  const localStorageSpecies = localstorage.get("lsspecies", defaultSpecies);
+  const localStorageGender = localstorage.get("lsgender", "all");
   const localStorageActor = localstorage.get("lsactor", "");
-  
-  
+
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState(localStorageName);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
+
+  const [speciesFilter, setSpeciesFilter] = useState(
+    localStorageSpecies
+  );
+  const [filterGender, setFilterGender] = useState(localStorageGender);
+
   const [filterActor, setFilterActor] = useState(localStorageActor);
 
   // useEffect
@@ -44,26 +58,69 @@ const App = () => {
       setFilterHouse(value);
       localstorage.set("lshouse", value);
     }
-else if (name === "actor") {
-  setFilterActor(value);
-  localstorage.set("lsactor", value);
-}
+
+    else if (
+      name === "human" ||
+      name === "werewolf" ||
+      name === "halfGiant" ||
+      name === "ghost"
+    ) {
+      setSpeciesFilter({ ...speciesFilter, [name]: value });
+      localstorage.set(
+        "lsspecies",
+        JSON.stringify({ ...speciesFilter, [name]: value })
+      );
+    }
+    else if (name === "gender") {
+      setFilterGender(value);
+      localstorage.set("lsgender", value);
+    } 
+    else if (name === "actor") {
+      setFilterActor(value);
+      localstorage.set("lsactor", value);
+    }
   };
 
-  const filteredCharacters = characterData.filter((filterCharName) => {
-    return filterCharName.name.toLowerCase().includes(filterName.toLowerCase());
-  }).filter((character) => {
-    return character.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
-  } ) ;
+  const handleSpeciesReset = () => {
+    setSpeciesFilter(defaultSpecies);
+    localstorage.set("lsspecies", JSON.stringify(defaultSpecies));
+  };
+
+  // console.log(speciesFilter.human, speciesFilter['human']);
+
+  const filteredCharacters = characterData
+    .filter((filterChar) => {
+      return filterChar.name.toLowerCase().includes(filterName.toLowerCase());
+    })
+    .filter((filterChar) => {
+      if (filterChar.species === "human") {
+        return speciesFilter.human;
+      } else if (filterChar.species === "werewolf") {
+        return speciesFilter.werewolf;
+      } else if (filterChar.species === "halfGiant") {
+        return speciesFilter.halfGiant;
+      } else if (filterChar.species === "ghost") {
+        return speciesFilter.ghost;
+      }
+      return false;
+      // return speciesFilter[filterChar.species]
+    })
+    .filter((character) => {
+      return character.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
+    } )
+    .filter((filterChar) => {
+      if (filterGender === 'female') return filterChar.gender === 'female'
+      else if (filterGender === 'male') return filterChar.gender === 'male'
+      return true
+    });
+
 
   // Character details
   const renderCharacterDetails = (props) => {
-    console.log(props.match.params);
     const routeId = props.match.params.charId;
     const foundCharacter = characterData.find(
       (character) => character.name === routeId
     );
-    console.log(foundCharacter);
     return (
       <Characterdetails
         character={foundCharacter}
@@ -92,8 +149,12 @@ else if (name === "actor") {
         <Route path="/" exact>
           <Filters
             handleFilter={handleFilter}
+            handleSpeciesReset={handleSpeciesReset}
+            characterData={characterData}
             filterHouse={filterHouse}
             filterName={filterName}
+            filterGender={filterGender}
+            speciesFilter={speciesFilter}
             filterActor={filterActor}
           />
           <CharacterList
