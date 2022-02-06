@@ -5,7 +5,7 @@ const CharacterList = (props) => {
     <ul className="characterCards">
       {props.filteredCharacters.length >= 1
         ? props.filteredCharacters.map((character, index) => {
-            return <Character character={character} key={index} />;
+            return <Character filterHouse={props.filterHouse} character={character} key={index} />;
           })
         : <p className="no_result">No existe el personaje que buscas</p>}
     </ul>

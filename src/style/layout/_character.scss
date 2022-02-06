@@ -1,8 +1,16 @@
 .card {
-  border-right: $textprimary 2px solid;
+  position: relative;
   padding: 0 25px;
   margin-top: 25px;
-  
+&::after{
+  content: "";
+position: absolute;
+width: 2px;
+height: 100%;
+background-color: $textprimary;
+right: -2px;
+top:0;
+}
 
   &_img {
     width: 100%;

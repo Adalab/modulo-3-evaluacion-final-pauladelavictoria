@@ -1,74 +1,57 @@
-.mainDetail {
-  height: 100vh;
+.cardDetail_container {
+  font-variant-ligatures: common-ligatures;
   display: flex;
-  flex-direction: column;
-}
-
-.cardDetail {
-    position: relative;
-    color: rgb(211, 166, 37);
-  display: flex;
-  flex-direction: column;
-  margin: 30px auto 20px auto;
-  width: 40%;
-  background-color: rgb(116, 0, 16);
-  &_link {
-    background-color: white;
-    padding: 50px;
-    padding-left: 40px;
-    text-align: left;
-    font-size: 20px;
-    &-img {
-      width: 80px;
-      margin-left: 40px;
-      transform: rotate(30deg);
-    }
-  }
-  &_maintitle {
-    font-family: $mainfont;
-    padding: 35px;
-    text-align: center;
-  }
-  &_img {
-    margin: 0 auto 20px auto;
-    width: 70%;
-    height: 400px;
-    object-fit: cover;
-  }
-  &_info {
-    padding-left: 30px;
-    margin-left: 40px;
-    margin-right: 40px;
-    font-size: 20px;
-    &-logo{
-       width: 200px;
-       position: absolute;
-       bottom: 25px;
-       right: 35px;
-    }
-  }
-}
-
-.cardDetail_link:hover {
-  color: rgb(211, 166, 37);
-}
-.cardDetail_info:last-child {
-  margin-bottom: 20px;
-}
-
-
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 25px;
+  padding-top: 40px;
  
-.Ravenclaw .cardDetail {
-  background-color: rgb(0, 79, 111);
-  color: rgb(0, 12, 45);
-} 
-
-.Slytherin .cardDetail {
-  background-color: rgb(25, 100, 41);
-  color: rgb(1, 53, 23);
+  border: solid 2px $textprimary;
+  padding: 25px;
+  &-img {
+    width: 350px;
+    height: 450px;
+    object-fit: cover;
+    object-position: top;
+    mix-blend-mode: multiply;
+    filter: saturate(0);
+    margin-right: 25px;
+    
+  }
 }
 
-.Hufflepuff .cardDetail {
-  background-color: rgb(236, 185, 56);
-  color: rgb(55, 46, 41);
-} 
+.container-link{
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+.black-line {
+  background-color: $textprimary;
+  width: 230px;
+  height: 10px;
+}
+
+.cardDetail_container-info {
+  margin: 10px 25px;
+  font-size: 25px;
+  width: min-content;
+  
+}
+
+.fake_news {
+  mix-blend-mode: multiply;
+  filter: saturate(0);
+}
+.info_maintitle {
+  font-family: $titlefont;
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.info_crest {
+  mix-blend-mode: multiply;
+  filter: saturate(0);
+  width: 300px;
+
+
+}

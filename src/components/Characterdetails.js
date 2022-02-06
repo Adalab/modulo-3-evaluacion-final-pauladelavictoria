@@ -1,51 +1,75 @@
 import { Link } from "react-router-dom";
-import gry from '../images/gry.png';
-import sly from '../images/sly.png';
-import huf from '../images/huf.png';
-import rav from '../images/rav.png';
-
+import getPlaceholder from "../services/placeholder";
+import gry from "../images/gry.png";
+import sly from "../images/sly.png";
+import huf from "../images/huf.png";
+import rav from "../images/rav.png";
+import fakeNews1 from "../images/fakeNews1.jpg";
+import fakeNews2 from "../images/fakeNews2.jpg";
 
 const Characterdetails = (props) => {
-
+  // Placeholder
+  const placeholder = getPlaceholder();
+  // Escudo de cada casa
   const getCrestSrc = (house) => {
-    if (house === 'Gryffindor') return gry
-    else if (house === 'Slytherin') return sly
-    else if (house === 'Hufflepuff') return huf
-    else if (house === 'Ravenclaw') return rav
-  }
-   
+    if (house === "Gryffindor") return gry;
+    else if (house === "Slytherin") return sly;
+    else if (house === "Hufflepuff") return huf;
+    else if (house === "Ravenclaw") return rav;
+  };
+
   return (
-    <section className='mainDetail'>
+    <section className="cardDetail">
+      <div className="cardDetail_container">
+        <div className="container-link">
+          <Link className="info_link" to="/">
+            &#60;– Back
+          </Link>
+          <div className="black-line"></div>
+          
+          <img
+          className="info_crest"
+          src={getCrestSrc(props.character.house)}
+          alt="Escudo de la casa"
+        />
+        </div>
+      
+        {/* imagen character */}
+        <img
+          className="cardDetail_container-img"
+          src={props.character.image ? props.character.image : placeholder}
+          alt={`Foto de ${props.character.name}`}
+          title={`Foto de ${props.character.name}`}
+        />
 
-<div className="cardDetail">
-      <h2 className="cardDetail_maintitle">{`Información sobre: ${props.character.name}`}</h2>
-      <img
-        className="cardDetail_img"
+        {/* contenedor info */}
+        <div className="cardDetail_container-info">
+          <h2 className="info_maintitle"> {props.character.name}</h2>
 
-        src={props.character.image ? props.character.image : ''}
-        // Falta
-        alt={`Foto de ${props.character.name}`}
-        title={`Foto de ${props.character.name}`}
-      />
-      <ul>
-      <li className="cardDetail_info">Especie: {props.character.species}</li>
-      <li className="cardDetail_info"> status: 
-        {props.character.alive ? " Vive" : " Ya no vive"}
-      </li>
-      <li className="cardDetail_info">Casa: {props.character.house}</li>
-      <li className="cardDetail_info">Género: {props.character.gender}</li>
-      </ul>
-
-      <img className="cardDetail_info-logo" src={getCrestSrc(props.character.house)}
-      alt="Escudo de gryffindor" />
-
+          <ul>
+            <li className="cardDetail_info">
+              Species: {props.character.species}
+            </li>
+            <li className="cardDetail_info">
+              {" "}
+              status:
+              {props.character.alive ? " Alive" : " Dead"}
+            </li>
+            <li className="cardDetail_info">House: {props.character.house}</li>
+            <li className="cardDetail_info">
+              Gender: {props.character.gender}
+            </li>
+            <li className="cardDetail_info">
+              Patronus: {props.character.patronus}
+            </li>
+            <li className="cardDetail_info">
+              Ancestry: {props.character.ancestry}
+            </li>
+          </ul>
+        </div>
+        <img className="fake_news" src={fakeNews1} role="presentation" />
+        <img className="fake_news" src={fakeNews2} role="presentation" />
       </div>
-      <Link className="cardDetail_link"to="/">Volver al incio <img
-        className="cardDetail_link-img"
-        // src={wand}
-        alt='Icono de una varita'
-        title='Icono de una varita'
-      /></Link>
     </section>
   );
 };

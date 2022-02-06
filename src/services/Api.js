@@ -5,14 +5,14 @@ const CallToApi = (filterHouse) => {
       return data.map((dataCharacter) => {
         return {
           name: dataCharacter.name,
-          ualternate_names: dataCharacter.alternate_names,
           species: dataCharacter.species,
           house: dataCharacter.house,
           patronus: dataCharacter.patronus,
           alive: dataCharacter.alive,
           image: dataCharacter.image,
           gender: dataCharacter.gender,
-          actor: dataCharacter.actor
+          actor: dataCharacter.actor,
+          ancestry: dataCharacter.ancestry
         };
       });
     });

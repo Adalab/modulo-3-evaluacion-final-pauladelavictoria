@@ -120,6 +120,7 @@ const App = () => {
 
       return 0;
     });
+    
 
   // Character details
   const renderCharacterDetails = (props) => {
@@ -157,6 +158,7 @@ const App = () => {
             filterActor={filterActor}
           />
           <CharacterList
+          filterHouse={filterHouse}
             characterData={characterData}
             filteredCharacters={filteredCharacters}
           />
