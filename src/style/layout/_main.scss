@@ -1,0 +1,25 @@
+.container{
+  padding: 50px;
+  font-family: $mainfont;
+  color: $textprimary;
+  font-size: 16px;
+}
+
+.Gryffindor {
+  background-color: $gry;
+}
+.Slytherin {
+  background-color: $sly;
+}
+.Hufflepuff {
+  background-color: $huf;
+}
+.Ravenclaw {
+  background-color: $rav;
+}
+
+.main {
+  background-repeat: repeat;
+  background-size: 200px;
+}
+

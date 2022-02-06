@@ -10,11 +10,9 @@ import CharacterList from "./CharacterList";
 // service
 import CallToApi from "../services/Api";
 import localstorage from "../services/localstorage";
-// images
-import fondogry from "../images/fondogry.jpg";
-import fondosly from "../images/fondosly.jpg";
-import fondorav from "../images/fondorav.jpg";
-import fondohuff from "../images/fondohuff.jpg";
+// Imágenes
+import background from "../images/background.png";
+import logo from "../images/Logo.png"
 
 const App = () => {
   const defaultSpecies = {
@@ -25,23 +23,20 @@ const App = () => {
   };
   // localstorage
   const localStorageName = localstorage.get("lsname", "");
+  const localStorageActor = localstorage.get("lsactor", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-
   const localStorageSpecies = localstorage.get("lsspecies", defaultSpecies);
   const localStorageGender = localstorage.get("lsgender", "all");
-  const localStorageActor = localstorage.get("lsactor", "");
 
   // Variables estado
   const [characterData, setCharacterData] = useState([]);
   const [filterName, setFilterName] = useState(localStorageName);
+  const [filterActor, setFilterActor] = useState(localStorageActor);
   const [filterHouse, setFilterHouse] = useState(localStorageHouse);
 
-  const [speciesFilter, setSpeciesFilter] = useState(
-    localStorageSpecies
-  );
+  const [speciesFilter, setSpeciesFilter] = useState(localStorageSpecies);
   const [filterGender, setFilterGender] = useState(localStorageGender);
 
-  const [filterActor, setFilterActor] = useState(localStorageActor);
 
   // useEffect
   useEffect(() => {
@@ -118,7 +113,7 @@ const App = () => {
   // Character details
   const renderCharacterDetails = (props) => {
     const routeId = props.match.params.charId;
-    const foundCharacter = characterData.find(
+    const foundCharacter = filteredCharacters.find(
       (character) => character.name === routeId
     );
     return (
@@ -129,21 +124,14 @@ const App = () => {
     );
   };
 
-  // Background header
-  const getHouseBackground = (house) => {
-    if (house === "Gryffindor") return fondogry;
-    else if (house === "Slytherin") return fondosly;
-    else if (house === "Hufflepuff") return fondohuff;
-    else if (house === "Ravenclaw") return fondorav;
-  };
-
   return (
-    <div className={`main ${filterHouse}`}>
+    <div className={`container ${filterHouse}`}>
+      <div className='main' style={{backgroundImage: `url(${background})`}}>
       <header
-        className="header"
-        style={{ backgroundImage: `url(${getHouseBackground(filterHouse)})` }}
+        className='header'
       >
-        <h1 className="header_title">Harry Potter</h1>
+        <img className='header_logo' src={logo} alt="Harry Potter characters"/>
+        <h1 className='header_title'>Harry Potter characters</h1>
       </header>
       <Switch>
         <Route path="/" exact>
@@ -168,6 +156,7 @@ const App = () => {
           render={renderCharacterDetails}
         ></Route>
       </Switch>
+      </div>
     </div>
   );
 };

@@ -1,58 +1,24 @@
-.form{
-    display: flex;
-    flex-direction: column;
-    margin: 0px auto 35px 35px;
-    
-    &_label{
-        font-size: 20px;
-        padding: 10px;
-        font-family: $secfont;
-    }
-    &_input{
-        width: 30%;
-        border-radius: 5px;
-        padding: 5px;
-        border: 1px black solid;
-    }
-}
-.flexFilters {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.filter_resetbtn{
-    width: 180px;
-
-}
-.filter_logo{
-    width: 150px;
-    height: 150px;
-    position: relative;
-}
-
-.filter_arrow {
-    width: 50px;
-    height: 50px;
-    transform: rotate(20deg);
-}
-
-.filter_text{
-    font-family: $secfont;
-    font-size: 17px;
-    margin-bottom: 25px;
-}
-
 .filter_houses {
-    display: flex;
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  top: 50px;
+  right: 150px;
 }
 
 .filter_houses img {
-    width: 50px;
-    filter: saturate(0);
-    cursor: pointer;
+  margin-right: 25px;
+  width: 60px;
+  filter: saturate(0);
+  cursor: pointer;
+  transform: translateY(-110px);
+  transition: transform 0.2s linear;
+  filter: drop-shadow(-7px 10px 2px rgba(0,0,0,0.2)) sepia(70%);
+
 }
 
-.filter_houses img.selected, 
+.filter_houses img.selected,
 .filter_houses img:hover {
-    filter: none;
+  transform: translateY(-80px);
+  filter: drop-shadow(-7px 10px 2px rgba(0,0,0,0.2));
 }

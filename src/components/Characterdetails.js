@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import wand from '../images/wand.png';
 import gry from '../images/gry.png';
 import sly from '../images/sly.png';
 import huf from '../images/huf.png';
 import rav from '../images/rav.png';
-import imgplace from '../images/imgplace.png';
+
 
 const Characterdetails = (props) => {
 
@@ -23,7 +22,8 @@ const Characterdetails = (props) => {
       <img
         className="cardDetail_img"
 
-        src={props.character.image ? props.character.image : imgplace}
+        src={props.character.image ? props.character.image : ''}
+        // Falta
         alt={`Foto de ${props.character.name}`}
         title={`Foto de ${props.character.name}`}
       />
@@ -42,7 +42,7 @@ const Characterdetails = (props) => {
       </div>
       <Link className="cardDetail_link"to="/">Volver al incio <img
         className="cardDetail_link-img"
-        src={wand}
+        // src={wand}
         alt='Icono de una varita'
         title='Icono de una varita'
       /></Link>

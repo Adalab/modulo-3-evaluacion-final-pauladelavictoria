@@ -1,2 +1,21 @@
-$mainfont: 'Harry Potter', sans-serif;
-$secfont: "Crimson Text", Georgia;
+// Fuentes
+@font-face {
+  font-family: "headoh";
+  src: url("../../fonts/headoh.ttf") format("truetype");
+}
+@font-face {
+  font-family: "operina";
+  src: url("../../fonts/operina.ttf") format("truetype");
+}
+$mainfont: "operina";
+$titlefont: "headoh";
+
+// Colores fondo
+$gry: rgb(108, 26, 49);
+$huf: rgb(186, 118, 37);
+$rav: rgb(6, 63, 83);
+$sly: rgb(19, 71, 49);
+
+// color texto
+$textprimary: rgb(63, 56, 50);
+$textsecundary: rgb(153, 138, 124);
