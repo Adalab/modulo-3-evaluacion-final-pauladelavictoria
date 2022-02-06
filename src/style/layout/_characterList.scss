@@ -1,6 +1,6 @@
 .characterCards {
   border: $textprimary 2px solid;
-  margin: 0 25px;
+  margin: 0 25px 25px;
   display: grid;
     grid-template-columns: 100%;
     @media (min-width: 450px) {
@@ -16,4 +16,9 @@
   }
 }
 
+
+.no_result {
+  font-size: 30px;
+  margin: 50px;
+}
 

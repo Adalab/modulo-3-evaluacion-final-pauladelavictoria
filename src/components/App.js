@@ -109,6 +109,17 @@ const App = () => {
       return true
     });
 
+    // Ordenar alfabéticamente
+    filteredCharacters.sort(function (a, b) {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+
+      return 0;
+    });
 
   // Character details
   const renderCharacterDetails = (props) => {
