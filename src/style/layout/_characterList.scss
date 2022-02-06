@@ -1,4 +1,6 @@
 .characterCards {
+  border: $textprimary 2px solid;
+  margin: 0 25px;
   display: grid;
     grid-template-columns: 100%;
     @media (min-width: 450px) {

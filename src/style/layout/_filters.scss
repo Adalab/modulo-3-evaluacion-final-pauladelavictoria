@@ -1,3 +1,4 @@
+// Filtro por casas
 .filter_houses {
   display: flex;
   justify-content: end;
@@ -13,12 +14,76 @@
   cursor: pointer;
   transform: translateY(-110px);
   transition: transform 0.2s linear;
-  filter: drop-shadow(-7px 10px 2px rgba(0,0,0,0.2)) sepia(70%);
-
+  filter: drop-shadow(-7px 10px 2px rgba(0, 0, 0, 0.2)) sepia(70%);
 }
 
 .filter_houses img.selected,
 .filter_houses img:hover {
   transform: translateY(-80px);
-  filter: drop-shadow(-7px 10px 2px rgba(0,0,0,0.2));
+  filter: drop-shadow(-7px 10px 2px rgba(0, 0, 0, 0.2));
+}
+
+// Ocultos
+.screen_reader {
+  display: none;
+}
+
+// Formulario
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 21px;
+  border-top: $textprimary 2px solid;
+  margin: 0 25px;
+  padding: 5px 0;
+  &_input {
+    border-bottom: $textprimary 2px solid;
+  }
+}
+
+// Filtros nombre y actor/actriz
+.container_actor {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin: 18px 0;
+  border-right: $textprimary 2px solid;
+  border-left: $textprimary 2px solid;
+}
+.filter_icon-search {
+  mix-blend-mode: multiply;
+  width: 22px;
+  height: 30px;
+  margin: 10px;
+}
+.filter_icon-reset {
+  mix-blend-mode: multiply;
+  width: 38px;
+  height: 38px;
+}
+
+// Filtro sexo y especie
+.container_gender {
+  display: flex;
+  align-items: center;
+  border-right: $textprimary 2px solid;
+  border-left: $textprimary 2px solid;
+}
+
+input:not(:checked) + label {
+  color: $textsecundary;
+  text-decoration: line-through;
+}
+
+input:checked + label {
+  text-decoration: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.label {
+  margin: 0 10px;
 }

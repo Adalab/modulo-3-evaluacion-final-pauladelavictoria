@@ -1,16 +1,17 @@
-import { useState } from "react";
-
 import gryfilter from "../images/gryfilter.png";
 import hufffilter from "../images/hufffilter.png";
 import ravfilter from "../images/ravfilter.png";
 import slyfilter from "../images/slyfilter.png";
+import search from "../images/search.png";
+import reset from "../images/reset.png";
 
 // Filtros
 const Filters = (props) => {
-
   const handleFilter = (ev) => {
-
-    console.log(ev.currentTarget.name, ev.currentTarget.value || ev.currentTarget.id);
+    console.log(
+      ev.currentTarget.name,
+      ev.currentTarget.value || ev.currentTarget.id
+    );
     props.handleFilter(
       ev.currentTarget.name,
       ev.currentTarget.value || ev.currentTarget.id
@@ -33,6 +34,7 @@ const Filters = (props) => {
   return (
     <div>
       <div className="flexFilters">
+        {/* Filtro por casas */}
         <ul className="filter_houses">
           <li>
             <img
@@ -75,134 +77,148 @@ const Filters = (props) => {
             />
           </li>
         </ul>
-
-        <div className="filter_reset">
-          <button type="reset" onClick={handleReset}>
-            {/* <img className="filter_resetbtn" src={falta} alt="Icono andén" /> */}
-          </button>
-          <p className="filter_text">Borra tus búsquedas</p>
-        </div>
       </div>
 
-        <form className={`form`} onSubmit={(ev) => ev.preventDefault()}>
-          <label className="form_label" htmlFor="name">
-            Buscar personaje por nombre:
+      {/* ---FORMULARIO FILTROS */}
+      <form className={`form`} onSubmit={(ev) => ev.preventDefault()}>
+        {/* Buscar personajes por nombre */}
+        <img className="filter_icon-search" src={search} alt="Icono lupa" />
+        <input
+          className="form_input"
+          type="text"
+          name="name"
+          placeholder="Character search"
+          onChange={handleFilter}
+          value={props.filterName}
+        />
+
+        <div className="container_gender">
+          {/* Buscar personajes por sexo*/}
+          <label className="screen_reader">
+            Elige los personajes según su sexo:
           </label>
 
-          <input
-            className="form_input"
-            type="text"
-            name="name"
-            onChange={handleFilter}
-            value={props.filterName}
-          />
-
-          <label className="form_label" htmlFor="actor">
-            Buscar personaje por el nombre del actor:
-          </label>
-
-          <input
-            className="form_input"
-            type="text"
-            name="actor"
-            onChange={handleFilter}
-            value={props.filterActor}
-          />
           <div>
-            <label className="form_label">
-              Elige los personajes según su sexo:
+            <input
+              className="hidden"
+              name="gender"
+              id="all"
+              value="all"
+              type="radio"
+              checked={props.filterGender === "all"}
+              onChange={handleFilter}
+            />
+            <label className="label" htmlFor="all">
+              All
             </label>
-            <div>
-              <label htmlFor="female">
-                <input
-                  name="gender"
-                  id="female"
-                  value="female"
-                  type="radio"
-                  checked={props.filterGender === "female"}
-                  onChange={handleFilter}
-                />
-                Mujer
-              </label>
-            </div>
-            <div>
-              <label htmlFor="male">
-                <input
-                  name="gender"
-                  id="male"
-                  value="male"
-                  type="radio"
-                  checked={props.filterGender === "male"}
-                  onChange={handleFilter}
-                />
-                Hombre
-              </label>
-            </div>
-            <div>
-              <label htmlFor="all">
-                <input
-                  name="gender"
-                  id="all"
-                  value="all"
-                  type="radio"
-                  checked={props.filterGender === "all"}
-                  onChange={handleFilter}
-                />
-                Todas las personas
-              </label>
-            </div>
-
-            <label className="form_label">
-              Filtra los personajes según su especie:
+          </div>
+          <div>
+            <input
+              className="hidden"
+              name="gender"
+              id="female"
+              value="female"
+              type="radio"
+              checked={props.filterGender === "female"}
+              onChange={handleFilter}
+            />
+            <label className="label" htmlFor="female">
+              Female
             </label>
-            <label htmlFor="human">
-              <input
-                id="human"
-                type="checkbox"
-                name="species"
-                checked={props.speciesFilter.human}
-                onChange={handleSpeciesFilter}
-              />
-              Humana
+          </div>
+          <div>
+            <input
+              className="hidden"
+              name="gender"
+              id="male"
+              value="male"
+              type="radio"
+              checked={props.filterGender === "male"}
+              onChange={handleFilter}
+            />
+            <label className="label" htmlFor="male">
+              Male
             </label>
-            <label htmlFor="ghost">
-              <input
-                id="ghost"
-                type="checkbox"
-                name="species"
-                checked={props.speciesFilter.ghost}
-                onChange={handleSpeciesFilter}
-              />
-              Fantasma
-            </label>
-            <label htmlFor="halfGiant">
-              <input
-                id="halfGiant"
-                type="checkbox"
-                name="species"
-                checked={props.speciesFilter.halfGiant}
-                onChange={handleSpeciesFilter}
-              />
-              Mitad gigante
-            </label>
-            <label htmlFor="werewolf">
-              <input
-                id="werewolf"
-                type="checkbox"
-                name="species"
-                checked={props.speciesFilter.werewolf}
-                onChange={handleSpeciesFilter}
-              />
-              Hombre lobo
-            </label>
-            {/* {['human', 'ghost', 'halfGiant', 'werewolf'].map((eachSpecies) => 
+          </div>
+        </div>
+        {/* Buscar personajes por especie*/}
+        <label className="screen_reader">
+          Filtra los personajes según su especie:
+        </label>
+        <input
+          className="hidden"
+          id="human"
+          type="checkbox"
+          name="species"
+          checked={props.speciesFilter.human}
+          onChange={handleSpeciesFilter}
+        />
+        <label className="label" htmlFor="human">
+          Human
+        </label>
+        <input
+          className="hidden"
+          id="ghost"
+          type="checkbox"
+          name="species"
+          checked={props.speciesFilter.ghost}
+          onChange={handleSpeciesFilter}
+        />
+        <label className="label" htmlFor="ghost">
+          Ghost
+        </label>
+        <input
+          className="hidden"
+          id="halfGiant"
+          type="checkbox"
+          name="species"
+          checked={props.speciesFilter.halfGiant}
+          onChange={handleSpeciesFilter}
+        />
+        <label className="label" htmlFor="halfGiant">
+          halfGiant
+        </label>
+        <input
+          className="hidden"
+          id="werewolf"
+          type="checkbox"
+          name="species"
+          checked={props.speciesFilter.werewolf}
+          onChange={handleSpeciesFilter}
+        />
+        <label className="label" htmlFor="werewolf">
+          werewolf
+        </label>
+        {/* {['human', 'ghost', 'halfGiant', 'werewolf'].map((eachSpecies) => 
               <label htmlFor={eachSpecies}>
                 <input id={eachSpecies} type="checkbox" name="species" checked={props.speciesFilter[eachSpecies]} onChange={handleSpeciesFilter}/>
                 {eachSpecies}
             </label>
             )} */}
-          </div>
-        </form>
+
+        {/* Buscar actor/actriz por nombre */}
+        <div className="container_actor">
+          <img className="filter_icon-search" src={search} alt="Icono lupa" />
+          <input
+            className="form_input"
+            type="text"
+            name="actor"
+            placeholder="Actor search"
+            onChange={handleFilter}
+            value={props.filterActor}
+          />
+        </div>
+
+        <div>
+          <button type="reset" onClick={handleReset}>
+            <img
+              className="filter_icon-reset"
+              src={reset}
+              alt="Escoba de Harry Potter, icono para borrar los datos"
+            />
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
