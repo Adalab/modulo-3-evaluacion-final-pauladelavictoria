@@ -28,6 +28,7 @@ const Filters = (props) => {
     props.handleFilter("name", "");
     props.handleFilter("house", "Gryffindor");
     props.handleFilter("gender", "all");
+    props.handleFilter("actor", "");
     props.handleSpeciesReset();
   };
 
@@ -82,6 +83,7 @@ const Filters = (props) => {
       {/* ---FORMULARIO FILTROS */}
       <form className={`form`} onSubmit={(ev) => ev.preventDefault()}>
         {/* Buscar personajes por nombre */}
+        <div className="container_name">
         <img className="filter_icon-search" src={search} alt="Icono lupa" />
         <input
           className="form_input"
@@ -91,6 +93,7 @@ const Filters = (props) => {
           onChange={handleFilter}
           value={props.filterName}
         />
+        </div>
 
         <div className="container_gender">
           {/* Buscar personajes por sexo*/}
@@ -142,6 +145,8 @@ const Filters = (props) => {
           </div>
         </div>
         {/* Buscar personajes por especie*/}
+
+        <div className="container_species">
         <label className="screen_reader">
           Filtra los personajes según su especie:
         </label>
@@ -189,6 +194,7 @@ const Filters = (props) => {
         <label className="label" htmlFor="werewolf">
           werewolf
         </label>
+        </div>
         {/* {['human', 'ghost', 'halfGiant', 'werewolf'].map((eachSpecies) => 
               <label htmlFor={eachSpecies}>
                 <input id={eachSpecies} type="checkbox" name="species" checked={props.speciesFilter[eachSpecies]} onChange={handleSpeciesFilter}/>

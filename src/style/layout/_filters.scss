@@ -5,6 +5,9 @@
   position: absolute;
   top: 50px;
   right: 150px;
+  @include mobile{
+    right: 40px; 
+  }
 }
 
 .filter_houses img {
@@ -15,12 +18,21 @@
   transform: translateY(-110px);
   transition: transform 0.2s linear;
   filter: drop-shadow(-7px 10px 2px rgba(0, 0, 0, 0.2)) sepia(70%);
+  @include mobile {
+   width: 15px;
+   margin-right: 10px;
+   transform: translateY(-57px);
+  }
+  
 }
 
 .filter_houses img.selected,
 .filter_houses img:hover {
   transform: translateY(-80px);
   filter: drop-shadow(-7px 10px 2px rgba(0, 0, 0, 0.2));
+  @include mobile {
+    transform: translateY(-50px);
+  }
 }
 
 // Ocultos
@@ -43,6 +55,11 @@
   &_input {
     border-bottom: $textprimary 2px solid;
   }
+  @include mobile {
+    font-size: 14px;
+    margin: 0 15px;
+    border-top: $textprimary 1px solid;
+  }
 }
 
 // Filtros nombre y actor/actriz
@@ -53,6 +70,12 @@
   margin: 18px 0;
   border-right: $textprimary 2px solid;
   border-left: $textprimary 2px solid;
+  @include mobile {
+    margin: 10px;
+    // FALTA TERMINAR EL RESPONSIVE Y SOLUCIONAR 
+    // EL ENCONTRAR LOS PERSONAJES AL CARGAR DE CERO LA PÁGINA
+  } 
+ 
 }
 .filter_icon-search {
   mix-blend-mode: multiply;
@@ -72,6 +95,7 @@
   align-items: center;
   border-right: $textprimary 2px solid;
   border-left: $textprimary 2px solid;
+
 }
 
 input:not(:checked) + label {

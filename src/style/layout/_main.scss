@@ -3,7 +3,9 @@
   font-family: $mainfont;
   color: $textprimary;
   font-size: 16px;
-
+@include mobile {
+  padding: 15px;
+}
 }
 
 .Gryffindor {
