@@ -25,5 +25,8 @@ top:0;
     font-family: $titlefont;
     margin-bottom: 10px;
     width: min-content;
+    @include mobile {
+      font-size: 40px;
   }
+}
 }

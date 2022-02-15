@@ -68,7 +68,7 @@ const Characterdetails = (props) => {
           </ul>
         </div>
         <img className="fake_news" src={fakeNews1} role="presentation" />
-        <img className="fake_news" src={fakeNews2} role="presentation" />
+        <img className="fake_news none" src={fakeNews2} role="presentation" />
       </div>
     </section>
   );

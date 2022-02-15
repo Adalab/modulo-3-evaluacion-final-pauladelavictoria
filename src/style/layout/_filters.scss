@@ -4,9 +4,12 @@
   justify-content: end;
   position: absolute;
   top: 50px;
-  right: 150px;
-  @include mobile{
-    right: 40px; 
+  right: 100px;
+  @include mobile {
+    right: 20px;
+  }
+  @include tablet {
+    right: 60px;
   }
 }
 
@@ -19,11 +22,14 @@
   transition: transform 0.2s linear;
   filter: drop-shadow(-7px 10px 2px rgba(0, 0, 0, 0.2)) sepia(70%);
   @include mobile {
-   width: 15px;
-   margin-right: 10px;
-   transform: translateY(-57px);
+    width: 20px;
+    margin-right: 8px;
+    transform: translateY(-70px);
   }
-  
+  @include tablet {
+    width: 30px;
+    margin-right: 8px;
+    transform: translateY(-80px);  }
 }
 
 .filter_houses img.selected,
@@ -31,7 +37,10 @@
   transform: translateY(-80px);
   filter: drop-shadow(-7px 10px 2px rgba(0, 0, 0, 0.2));
   @include mobile {
-    transform: translateY(-50px);
+    transform: translateY(-60px);
+  }
+  @include tablet {
+  transform: translateY(-70px);
   }
 }
 
@@ -39,6 +48,7 @@
 .screen_reader {
   display: none;
 }
+
 
 // Formulario
 .form {
@@ -56,13 +66,20 @@
     border-bottom: $textprimary 2px solid;
   }
   @include mobile {
+    margin-bottom: 15px;
     font-size: 14px;
     margin: 0 15px;
     border-top: $textprimary 1px solid;
+    flex-direction: column;
+    align-items: initial;
   }
-}
+ @include tablet {
+  font-size: 18px;
+ }
+  }
 
-// Filtros nombre y actor/actriz
+
+// Filtro actor/actriz
 .container_actor {
   display: flex;
   align-items: center;
@@ -71,32 +88,75 @@
   border-right: $textprimary 2px solid;
   border-left: $textprimary 2px solid;
   @include mobile {
-    margin: 10px;
-    // FALTA TERMINAR EL RESPONSIVE Y SOLUCIONAR 
-    // EL ENCONTRAR LOS PERSONAJES AL CARGAR DE CERO LA PÁGINA
-  } 
- 
+    margin-top: 15px;
+    margin-left: 15px;
+    border-left: none;
+    border-right: none;
+
+  }
 }
+
+// Filtro nombre
+.container_name {
+  @include mobile {
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+}
+
+// Icono lupa
 .filter_icon-search {
   mix-blend-mode: multiply;
   width: 22px;
   height: 30px;
   margin: 10px;
+  @include mobile {
+    width: 15px;
+    height: 25px;
+    margin: 0 10px;
+  }
 }
+
+// Botón de reset
 .filter_icon-reset {
   mix-blend-mode: multiply;
   width: 38px;
   height: 38px;
-}
+  @include mobile {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 230px;
+    top: 150px;
+    border: $textprimary solid 1px;
+    border-radius: 50px;
+    padding: 5px;
+  }
+@include tablet {
+  left: 300px;
+}}
 
-// Filtro sexo y especie
+// Filtro sexo
 .container_gender {
   display: flex;
   align-items: center;
   border-right: $textprimary 2px solid;
   border-left: $textprimary 2px solid;
-
+  @include mobile {
+    margin: 15px 15px;
+    border-right: none;
+    border-left: none;
+  }
 }
+
+// filtro especie
+.container_species {
+  @include mobile {
+    margin: 0 15px;
+    position: relative;
+  }
+}
+
 
 input:not(:checked) + label {
   color: $textsecundary;
