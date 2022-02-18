@@ -12,7 +12,7 @@ import CallToApi from "../services/Api";
 import localstorage from "../services/localstorage";
 // Imágenes
 import background from "../images/background.png";
-import logo from "../images/Logo.png"
+import logo from "../images/Logo.png";
 
 const App = () => {
   const defaultSpecies = {
@@ -25,7 +25,9 @@ const App = () => {
   const localStorageName = localstorage.get("lsname", "");
   const localStorageActor = localstorage.get("lsactor", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-  const localStorageSpecies = localstorage.get("lsspecies") ? JSON.parse(localstorage.get("lsspecies")) : defaultSpecies;
+  const localStorageSpecies = localstorage.get("lsspecies")
+    ? JSON.parse(localstorage.get("lsspecies"))
+    : defaultSpecies;
   const localStorageGender = localstorage.get("lsgender", "all");
 
   // Variables estado
@@ -37,7 +39,6 @@ const App = () => {
   const [speciesFilter, setSpeciesFilter] = useState(localStorageSpecies);
   const [filterGender, setFilterGender] = useState(localStorageGender);
 
-
   // useEffect
   useEffect(() => {
     CallToApi(filterHouse).then((data) => setCharacterData(data));
@@ -48,30 +49,22 @@ const App = () => {
     if (name === "name") {
       setFilterName(value);
       localstorage.set("lsname", value);
-    }
-    else if (name === "house") {
+    } else if (name === "house") {
       setFilterHouse(value);
       localstorage.set("lshouse", value);
-    }
-
-    else if (
+    } else if (
       name === "human" ||
       name === "werewolf" ||
       name === "halfGiant" ||
       name === "ghost"
     ) {
-      const newSpeciesFilter = { ...speciesFilter, [name]: value }
+      const newSpeciesFilter = { ...speciesFilter, [name]: value };
       setSpeciesFilter(newSpeciesFilter);
-      localstorage.set(
-        "lsspecies",
-        JSON.stringify(newSpeciesFilter)
-      );
-    }
-    else if (name === "gender") {
+      localstorage.set("lsspecies", JSON.stringify(newSpeciesFilter));
+    } else if (name === "gender") {
       setFilterGender(value);
       localstorage.set("lsgender", value);
-    } 
-    else if (name === "actor") {
+    } else if (name === "actor") {
       setFilterActor(value);
       localstorage.set("lsactor", value);
     }
@@ -82,9 +75,6 @@ const App = () => {
     localstorage.set("lsspecies", JSON.stringify(defaultSpecies));
   };
 
-  // console.log(speciesFilter.human, speciesFilter['human']);
-
-  console.log(typeof speciesFilter);
   const filteredCharacters = characterData
     .filter((filterChar) => {
       return filterChar.name.toLowerCase().includes(filterName.toLowerCase());
@@ -103,28 +93,27 @@ const App = () => {
       // return speciesFilter[filterChar.species]
     })
     .filter((filterChar) => {
-      return filterChar.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
+      return filterChar.actor
+        .toLowerCase()
+        .includes(filterActor.toLocaleLowerCase());
     })
     .filter((filterChar) => {
-      if (filterGender === 'female') return filterChar.gender === 'female'
-      else if (filterGender === 'male') return filterChar.gender === 'male'
-      return true
+      if (filterGender === "female") return filterChar.gender === "female";
+      else if (filterGender === "male") return filterChar.gender === "male";
+      return true;
     });
 
-  console.log(filteredCharacters);
+  // Ordenar alfabéticamente
+  filteredCharacters.sort(function (a, b) {
+    if (a.name > b.name) {
+      return 1;
+    }
+    if (a.name < b.name) {
+      return -1;
+    }
 
-    // Ordenar alfabéticamente
-    filteredCharacters.sort(function (a, b) {
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-
-      return 0;
-    });
-    
+    return 0;
+  });
 
   // Character details
   const renderCharacterDetails = (props) => {
@@ -142,37 +131,39 @@ const App = () => {
 
   return (
     <div className={`container ${filterHouse}`}>
-      <div className='main' style={{backgroundImage: `url(${background})`}}>
-      <header
-        className='header'
-      >
-        <img className='header_logo' src={logo} alt="Harry Potter characters"/>
-        <h1 className='header_title'>Harry Potter characters</h1>
-      </header>
-      <Switch>
-        <Route path="/" exact>
-          <Filters
-            handleFilter={handleFilter}
-            handleSpeciesReset={handleSpeciesReset}
-            characterData={characterData}
-            filterHouse={filterHouse}
-            filterName={filterName}
-            filterGender={filterGender}
-            speciesFilter={speciesFilter}
-            filterActor={filterActor}
+      <div className="main" style={{ backgroundImage: `url(${background})` }}>
+        <header className="header">
+          <img
+            className="header_logo"
+            src={logo}
+            alt="Harry Potter characters"
           />
-          <CharacterList
-          filterHouse={filterHouse}
-            characterData={characterData}
-            filteredCharacters={filteredCharacters}
-          />
-        </Route>
+          <h1 className="header_title">Harry Potter characters</h1>
+        </header>
+        <Switch>
+          <Route path="/" exact>
+            <Filters
+              handleFilter={handleFilter}
+              handleSpeciesReset={handleSpeciesReset}
+              characterData={characterData}
+              filterHouse={filterHouse}
+              filterName={filterName}
+              filterGender={filterGender}
+              speciesFilter={speciesFilter}
+              filterActor={filterActor}
+            />
+            <CharacterList
+              filterHouse={filterHouse}
+              characterData={characterData}
+              filteredCharacters={filteredCharacters}
+            />
+          </Route>
 
-        <Route
-          path="/characterdetails/:charId"
-          render={renderCharacterDetails}
-        ></Route>
-      </Switch>
+          <Route
+            path="/characterdetails/:charId"
+            render={renderCharacterDetails}
+          ></Route>
+        </Switch>
       </div>
     </div>
   );

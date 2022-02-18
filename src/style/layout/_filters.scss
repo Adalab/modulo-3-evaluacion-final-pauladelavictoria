@@ -29,7 +29,8 @@
   @include tablet {
     width: 30px;
     margin-right: 8px;
-    transform: translateY(-80px);  }
+    transform: translateY(-80px);
+  }
 }
 
 .filter_houses img.selected,
@@ -40,7 +41,7 @@
     transform: translateY(-60px);
   }
   @include tablet {
-  transform: translateY(-70px);
+    transform: translateY(-70px);
   }
 }
 
@@ -48,7 +49,6 @@
 .screen_reader {
   display: none;
 }
-
 
 // Formulario
 .form {
@@ -73,11 +73,10 @@
     flex-direction: column;
     align-items: initial;
   }
- @include tablet {
-  font-size: 18px;
- }
+  @include tablet {
+    font-size: 18px;
   }
-
+}
 
 // Filtro actor/actriz
 .container_actor {
@@ -92,12 +91,13 @@
     margin-left: 15px;
     border-left: none;
     border-right: none;
-
   }
 }
 
 // Filtro nombre
 .container_name {
+  display: flex;
+  align-items: center;
   @include mobile {
     margin-top: 15px;
     margin-left: 15px;
@@ -132,9 +132,10 @@
     border-radius: 50px;
     padding: 5px;
   }
-@include tablet {
-  left: 300px;
-}}
+  @include tablet {
+    left: 300px;
+  }
+}
 
 // Filtro sexo
 .container_gender {
@@ -156,7 +157,6 @@
     position: relative;
   }
 }
-
 
 input:not(:checked) + label {
   color: $textsecundary;

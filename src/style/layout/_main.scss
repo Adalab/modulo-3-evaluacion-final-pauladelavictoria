@@ -1,11 +1,11 @@
-.container{
+.container {
   padding: 50px;
   font-family: $mainfont;
   color: $textprimary;
   font-size: 16px;
-@include mobile {
-  padding: 15px;
-}
+  @include mobile {
+    padding: 15px;
+  }
 }
 
 .Gryffindor {
@@ -26,4 +26,3 @@
   background-size: 200px;
   padding-bottom: 25px;
 }
-

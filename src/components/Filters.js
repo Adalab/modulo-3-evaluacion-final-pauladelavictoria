@@ -8,10 +8,6 @@ import reset from "../images/reset.png";
 // Filtros
 const Filters = (props) => {
   const handleFilter = (ev) => {
-    console.log(
-      ev.currentTarget.name,
-      ev.currentTarget.value || ev.currentTarget.id
-    );
     props.handleFilter(
       ev.currentTarget.name,
       ev.currentTarget.value || ev.currentTarget.id
@@ -19,7 +15,6 @@ const Filters = (props) => {
   };
 
   const handleSpeciesFilter = (ev) => {
-    console.log(ev.currentTarget.id, ev.currentTarget.checked);
     props.handleFilter(ev.currentTarget.id, ev.currentTarget.checked);
   };
 
@@ -84,15 +79,15 @@ const Filters = (props) => {
       <form className={`form`} onSubmit={(ev) => ev.preventDefault()}>
         {/* Buscar personajes por nombre */}
         <div className="container_name">
-        <img className="filter_icon-search" src={search} alt="Icono lupa" />
-        <input
-          className="form_input"
-          type="text"
-          name="name"
-          placeholder="Character search"
-          onChange={handleFilter}
-          value={props.filterName}
-        />
+          <img className="filter_icon-search" src={search} alt="Icono lupa" />
+          <input
+            className="form_input"
+            type="text"
+            name="name"
+            placeholder="Character search"
+            onChange={handleFilter}
+            value={props.filterName}
+          />
         </div>
 
         <div className="container_gender">
@@ -147,53 +142,53 @@ const Filters = (props) => {
         {/* Buscar personajes por especie*/}
 
         <div className="container_species">
-        <label className="screen_reader">
-          Filtra los personajes según su especie:
-        </label>
-        <input
-          className="hidden"
-          id="human"
-          type="checkbox"
-          name="species"
-          checked={props.speciesFilter.human}
-          onChange={handleSpeciesFilter}
-        />
-        <label className="label" htmlFor="human">
-          Human
-        </label>
-        <input
-          className="hidden"
-          id="ghost"
-          type="checkbox"
-          name="species"
-          checked={props.speciesFilter.ghost}
-          onChange={handleSpeciesFilter}
-        />
-        <label className="label" htmlFor="ghost">
-          Ghost
-        </label>
-        <input
-          className="hidden"
-          id="halfGiant"
-          type="checkbox"
-          name="species"
-          checked={props.speciesFilter.halfGiant}
-          onChange={handleSpeciesFilter}
-        />
-        <label className="label" htmlFor="halfGiant">
-          halfGiant
-        </label>
-        <input
-          className="hidden"
-          id="werewolf"
-          type="checkbox"
-          name="species"
-          checked={props.speciesFilter.werewolf}
-          onChange={handleSpeciesFilter}
-        />
-        <label className="label" htmlFor="werewolf">
-          werewolf
-        </label>
+          <label className="screen_reader">
+            Filtra los personajes según su especie:
+          </label>
+          <input
+            className="hidden"
+            id="human"
+            type="checkbox"
+            name="species"
+            checked={props.speciesFilter.human}
+            onChange={handleSpeciesFilter}
+          />
+          <label className="label" htmlFor="human">
+            Human
+          </label>
+          <input
+            className="hidden"
+            id="ghost"
+            type="checkbox"
+            name="species"
+            checked={props.speciesFilter.ghost}
+            onChange={handleSpeciesFilter}
+          />
+          <label className="label" htmlFor="ghost">
+            Ghost
+          </label>
+          <input
+            className="hidden"
+            id="halfGiant"
+            type="checkbox"
+            name="species"
+            checked={props.speciesFilter.halfGiant}
+            onChange={handleSpeciesFilter}
+          />
+          <label className="label" htmlFor="halfGiant">
+            halfGiant
+          </label>
+          <input
+            className="hidden"
+            id="werewolf"
+            type="checkbox"
+            name="species"
+            checked={props.speciesFilter.werewolf}
+            onChange={handleSpeciesFilter}
+          />
+          <label className="label" htmlFor="werewolf">
+            werewolf
+          </label>
         </div>
         {/* {['human', 'ghost', 'halfGiant', 'werewolf'].map((eachSpecies) => 
               <label htmlFor={eachSpecies}>

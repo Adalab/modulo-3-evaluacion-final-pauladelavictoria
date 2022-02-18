@@ -26,14 +26,14 @@ const Characterdetails = (props) => {
             &#60;– Back
           </Link>
           <div className="black-line"></div>
-          
+
           <img
-          className="info_crest"
-          src={getCrestSrc(props.character.house)}
-          alt="Escudo de la casa"
-        />
+            className="info_crest"
+            src={getCrestSrc(props.character.house)}
+            alt="Escudo de la casa"
+          />
         </div>
-      
+
         {/* imagen character */}
         <img
           className="cardDetail_container-img"
@@ -59,13 +59,17 @@ const Characterdetails = (props) => {
             <li className="cardDetail_info">
               Gender: {props.character.gender}
             </li>
-           {props.character.patronus && <li className="cardDetail_info">
-              Patronus: {props.character.patronus} 
-            </li>}
+            {props.character.patronus && (
+              <li className="cardDetail_info">
+                Patronus: {props.character.patronus}
+              </li>
+            )}
 
-            {props.character.ancestry && <li className="cardDetail_info">
-              Ancestry: {props.character.ancestry}
-            </li>}
+            {props.character.ancestry && (
+              <li className="cardDetail_info">
+                Ancestry: {props.character.ancestry}
+              </li>
+            )}
           </ul>
         </div>
         <img className="fake_news" src={fakeNews1} role="presentation" />

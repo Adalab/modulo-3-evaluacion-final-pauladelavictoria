@@ -4,13 +4,11 @@
   padding-bottom: 25px;
   display: grid;
   filter: blur(0.5px);
+  mix-blend-mode: multiply;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  
 }
-
 
 .no_result {
   font-size: 30px;
   margin: 50px;
 }
-
