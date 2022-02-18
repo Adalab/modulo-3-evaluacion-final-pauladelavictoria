@@ -25,7 +25,7 @@ const App = () => {
   const localStorageName = localstorage.get("lsname", "");
   const localStorageActor = localstorage.get("lsactor", "");
   const localStorageHouse = localstorage.get("lshouse", "Gryffindor");
-  const localStorageSpecies = localstorage.get("lsspecies", defaultSpecies);
+  const localStorageSpecies = localstorage.get("lsspecies") ? JSON.parse(localstorage.get("lsspecies")) : defaultSpecies;
   const localStorageGender = localstorage.get("lsgender", "all");
 
   // Variables estado
@@ -60,10 +60,11 @@ const App = () => {
       name === "halfGiant" ||
       name === "ghost"
     ) {
-      setSpeciesFilter({ ...speciesFilter, [name]: value });
+      const newSpeciesFilter = { ...speciesFilter, [name]: value }
+      setSpeciesFilter(newSpeciesFilter);
       localstorage.set(
         "lsspecies",
-        JSON.stringify({ ...speciesFilter, [name]: value })
+        JSON.stringify(newSpeciesFilter)
       );
     }
     else if (name === "gender") {
@@ -83,6 +84,7 @@ const App = () => {
 
   // console.log(speciesFilter.human, speciesFilter['human']);
 
+  console.log(typeof speciesFilter);
   const filteredCharacters = characterData
     .filter((filterChar) => {
       return filterChar.name.toLowerCase().includes(filterName.toLowerCase());
@@ -100,14 +102,16 @@ const App = () => {
       return false;
       // return speciesFilter[filterChar.species]
     })
-    .filter((character) => {
-      return character.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
-    } )
+    .filter((filterChar) => {
+      return filterChar.actor.toLowerCase().includes(filterActor.toLocaleLowerCase());
+    })
     .filter((filterChar) => {
       if (filterGender === 'female') return filterChar.gender === 'female'
       else if (filterGender === 'male') return filterChar.gender === 'male'
       return true
     });
+
+  console.log(filteredCharacters);
 
     // Ordenar alfabéticamente
     filteredCharacters.sort(function (a, b) {

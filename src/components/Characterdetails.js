@@ -59,12 +59,13 @@ const Characterdetails = (props) => {
             <li className="cardDetail_info">
               Gender: {props.character.gender}
             </li>
-            <li className="cardDetail_info">
-              Patronus: {props.character.patronus}
-            </li>
-            <li className="cardDetail_info">
+           {props.character.patronus && <li className="cardDetail_info">
+              Patronus: {props.character.patronus} 
+            </li>}
+
+            {props.character.ancestry && <li className="cardDetail_info">
               Ancestry: {props.character.ancestry}
-            </li>
+            </li>}
           </ul>
         </div>
         <img className="fake_news" src={fakeNews1} role="presentation" />
