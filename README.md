@@ -4,22 +4,42 @@
 
 Este proyecto es un  **buscador de personajes de la saga de Harry Potter**.
 
-**Tecnologías utilizadas:**
+### Tecnologías utilizadas
+- React 16.8
+- SCSS
+- JSX
 
--React 16.8
+### Características técnicas
+- Estructura de código: Hooks y componentes funcionales
+- Maquetación responsive: CSS Grid, Flexbox, variables y mixins SASS
+- [API REST](http://hp-api.herokuapp.com/api/characters/house/gryffindor) 
+- Local Storage  
 
--SCSS
 
--JSX
+puedes verlo [aquí](https://pauladelavictoria.github.io/Buscador-personajes-HarryPotter/#/) 
 
-**Características técnicas:** 
 
--Estructura de código: Hooks y componentes funcionales
+# Installation and setup
 
--Maquetación responsive: CSS Grid, Flexbox, variables y mixins SASS
+Requirements: you need `node` and `npm` installed on your computer.
 
--[API REST](http://hp-api.herokuapp.com/api/characters/house/gryffindor) 
 
--Local Storage 
+### Install the dependencies
 
-puedes verlo [aquí](https://pauladelavictoria.github.io/Buscador-personajes-HarryPotter/#/)
+```
+npm install
+```
+
+### Run the app
+
+```
+npm start
+```
+
+Go to [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+
+### Deploy for production environment
+
+```
+npm run build
+```
