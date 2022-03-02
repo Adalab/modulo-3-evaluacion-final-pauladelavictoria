@@ -6,7 +6,7 @@ Este proyecto es un  **buscador de personajes de la saga de Harry Potter**.
 
 **Tecnologías utilizadas:**
 
--React: Hooks y componentes 
+-React 16.8
 
 -SCSS
 
@@ -14,11 +14,11 @@ Este proyecto es un  **buscador de personajes de la saga de Harry Potter**.
 
 **Características técnicas:** 
 
--Maquetación responsive: CSS Grid 
+-Estructura de código: Hooks y componentes funcionales
 
--Petición [Fetch](http://hp-api.herokuapp.com/api/characters/house/gryffindor) 
+-Maquetación responsive: CSS Grid, Flexbox, variables y mixins SASS
 
--Maquetación responsive con Grid 
+-[API REST](http://hp-api.herokuapp.com/api/characters/house/gryffindor) 
 
 -Local Storage 
 
